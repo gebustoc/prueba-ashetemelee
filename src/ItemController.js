@@ -1,5 +1,4 @@
 import { Item } from "./item.js";
-import { User } from "./user.js";
 
 export class ItemController{
     
@@ -9,7 +8,6 @@ export class ItemController{
         ITEM_NOT_FOUND:2,
     }
 
-    // creates empty user dict
     constructor(){
         if (localStorage.getItem("items") === null){
             localStorage.setItem("items",JSON.stringify({}));
@@ -18,23 +16,20 @@ export class ItemController{
             this.saveItem(new Item("test-0","nose",Infinity,1,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
             this.saveItem(new Item("test-1","nose",32,1,1.5,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
             this.saveItem(new Item("test-2","nosel",Infinity,2,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
-
-
         }
         
         
 
     }
     getItems(){
-        console.log(localStorage.getItem("users"))
         let items = JSON.parse(localStorage.getItem("items"));
-        let userRet = [];
+        let itemRet = [];
         console.log(items);
 
         for (const id in items) {
-            userRet.push(this.getItem(id))
+            itemRet.push(this.getItem(id))
         }
-        return userRet;
+        return itemRet;
     }
 
 
@@ -53,8 +48,8 @@ export class ItemController{
 
     getItem(id){
         if (id == undefined) return null;
-        let users = JSON.parse(localStorage.getItem("items"));
-        let item = users[id];
+        let items = JSON.parse(localStorage.getItem("items"));
+        let item = items[id];
         let truitem = new Item(item._name,item._description,item._price,item._stock,item._pricemod,item._imgsrc);
         truitem.setId(item._id);
         return truitem;
@@ -82,7 +77,7 @@ export class ItemController{
         }
         
         let items = JSON.parse(localStorage.getItem("items")); 
-        items[user.getItem()] = item;
+        items[item.getId()] = item;
         localStorage.setItem("items",JSON.stringify(items));
         return ItemController.ErrorCodes.OK;
     }
@@ -93,12 +88,16 @@ export class ItemController{
             console.error("el item", item, "no existe en el sistema");
             return ItemController.ErrorCodes.ITEM_NOT_FOUND;    
         }
-        let users = JSON.parse(localStorage.getItem("items"));
-        delete users[user.getId()];
-        localStorage.setItem("items",JSON.stringify(users));
+        let items = JSON.parse(localStorage.getItem("items"));
+        delete items[user.getId()];
+        localStorage.setItem("items",JSON.stringify(items));
         return ItemController.ErrorCodes.OK;
     }
-
+    
 
 }
 
+
+function why(sexo) {
+    console.log("why")
+}
