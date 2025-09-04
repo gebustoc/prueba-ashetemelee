@@ -12,8 +12,14 @@ function regenerateContainers() {
         const element = items[i];
         let price = element.getPrice() - ((1.0-element.getPriceMod()) * element.getPrice()); 
 
-        container.innerHTML = container.innerHTML+
-        `<button onclick="idk" >Comprar (${element.getStock()} en stock)</button>` 
+        let btn = document.createElement("button");
+        btn.onclick = shittySale.bind(this,[items[i]]);
+        btn.textContent = `Comprar ${element.getName()} (${element.getStock()} en stock)`;
+        container.appendChild(btn);
+
+
+
+        //`<button onclick="idk()" >Comprar (${element.getStock()} en stock)</button>` 
         /*
         +`
             <div id="product_card">
@@ -32,12 +38,12 @@ function regenerateContainers() {
     }
     //shittySale(0)
 }
-function idk() {
-    console.log('32')
-}
 
-function shittySale(id){
-    let item = new ItemController().getItem(id);
+
+
+function shittySale(args, btn){
+    let item = args[0];
+    console.log(args)
     item.setStock(item.getStock()-1);
     new ItemController().updateItem(item);
     regenerateContainers();
