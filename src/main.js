@@ -1,3 +1,5 @@
+import { ItemController } from "./ItemController.js";
+
 var StockPulento = {};
 
 function createSellable(name,cost,stock,imgSrc){
@@ -23,7 +25,26 @@ function regenerateContainers() {
     container.innerHTML = ""
     
   
-    
+    let items = new ItemController().getItems();
+    for (const i in items) {
+        const element = items[i];
+        let price = element.getPrice() - ((1.0-element.getPriceMod()) * element.getPrice()); 
+        container.innerHTML = container.innerHTML+`
+            <div id="product_card">
+                <div class="card" style="width: 18rem;">
+                    <img src="${element.getImgSrc()}" width="300" class="productImage" alst="...">
+                    <div class="card-body">
+                        <h3 class="card-title">${element.getName()}</h3>
+                        <h4>${element.getDescription()}</h4>
+                        <p class="card-text"> $ ${new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(price)} </p>
+                        <a href="#" class="btn btn-primary">Comprar (${element.getStock()} en stock)</a>
+                    </div>
+                </div>
+            </div>        
+        `// wea ql larga para formatear numeros 
+    }
+
+    /*
     for (const name in StockPulento) {
         const element = StockPulento[name];
         container.innerHTML = container.innerHTML+`
@@ -45,12 +66,12 @@ function regenerateContainers() {
 
 
     }
-
+    */
 
 
 }
 
-
+/*
 createSellable(
     "RTX 5080",
     1_499_990,
@@ -63,8 +84,10 @@ createSellable(
     1,
     "https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"
 )
+*/
 
 
 
 
+regenerateContainers()
 
