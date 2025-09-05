@@ -1,3 +1,6 @@
+import { ItemController } from "./ItemController.js";
+
+
 function regenerateContainers() {
     const container = document.getElementById("product-container")
     container.innerHTML = ""
@@ -35,3 +38,5 @@ function shittySale(id){
     regenerateContainers();
 
 }
+
+regenerateContainers();
