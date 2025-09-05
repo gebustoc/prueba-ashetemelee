@@ -9,13 +9,17 @@ export class ItemController{
     }
 
     constructor(){
+
         if (localStorage.getItem("items") === null){
             localStorage.setItem("items",JSON.stringify({}));
             localStorage.setItem("newestItem",-1);
             let priceMult = 1.0;
-            this.saveItem(new Item("test-0","nose",Infinity,1,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
-            this.saveItem(new Item("test-1","nose",32,1,1.5,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
-            this.saveItem(new Item("test-2","nosel",Infinity,2,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
+            for (let i = 0; i < 8; i++) {
+
+                this.saveItem(new Item(`test-${i}`,"nose",Math.random()*99999999,1,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
+                
+            }
+
         }
         
         
@@ -24,7 +28,6 @@ export class ItemController{
     getItems(){
         let items = JSON.parse(localStorage.getItem("items"));
         let itemRet = [];
-        console.log(items);
 
         for (const id in items) {
             itemRet.push(this.getItem(id))
@@ -98,6 +101,3 @@ export class ItemController{
 }
 
 
-function why(sexo) {
-    console.log("why")
-}

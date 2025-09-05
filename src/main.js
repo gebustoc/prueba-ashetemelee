@@ -7,6 +7,7 @@ function regenerateContainers() {
     
   
     let items = new ItemController().getItems();
+
     for (const i in items) {
         const element = items[i];
         let price = element.getPrice() - ((1.0-element.getPriceMod()) * element.getPrice()); 
