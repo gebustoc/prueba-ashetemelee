@@ -2,12 +2,12 @@ import { ItemController } from "./ItemController.js";
 
 
 function regenerateContainers() {
+    return
     const container = document.getElementById("product-container")
     container.innerHTML = ""
     
   
     let items = new ItemController().getItems();
-
     for (const i in items) {
         const element = items[i];
         let price = element.getPrice() - ((1.0-element.getPriceMod()) * element.getPrice()); 
@@ -28,8 +28,8 @@ function regenerateContainers() {
     }
     //shittySale(0)
 }
-function idk(params) {
-    console.log(params)
+function idk() {
+    console.log("please work :/");
 }
 
 function shittySale(id){
@@ -41,3 +41,9 @@ function shittySale(id){
 }
 
 regenerateContainers();
+
+/*
+
+  
+
+.addEventListener('click', );*/

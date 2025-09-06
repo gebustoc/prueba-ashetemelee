@@ -1,3 +1,5 @@
+import { User } from "./User.js ";
+
 // strip the stuff in the bottom
 export class UserController{
     
@@ -33,51 +35,50 @@ export class UserController{
     saveUser(user){
         if (this.userExists(user.getUserName())){
             console.error(`el usuario ${user.getUserName()} ya existe en el sistema`);
-            return UserControllerThingy.ErrorCodes.USER_EXISTS;    
+            return UserController.ErrorCodes.USER_EXISTS;    
         }
 
         let users = JSON.parse(localStorage.getItem("users")); 
         users[user.getUserName()] = user;
         localStorage.setItem("users",JSON.stringify(users));
-        return UserControllerThingy.ErrorCodes.OK;
+        return UserController.ErrorCodes.OK;
     }
     updateUser(user){
         if (!this.userExists(user.getUserName())){
             console.error(`el usuario ${user.getUserName()} no existe en el sistema`);
-            return UserControllerThingy.ErrorCodes.USER_NOT_FOUND;    
+            return UserController.ErrorCodes.USER_NOT_FOUND;    
         }
         
         let users = JSON.parse(localStorage.getItem("users")); 
         users[user.getUserName()] = user;
         localStorage.setItem("users",JSON.stringify(users));
-        return UserControllerThingy.ErrorCodes.OK;
+        return UserController.ErrorCodes.OK;
     }
 
 
     eraseUser(user){
         if (!this.userExists(user.getUserName())){
             console.error(`el usuario ${user.getUserName()} no existe en el sistema`);
-            return UserControllerThingy.ErrorCodes.USER_NOT_FOUND;    
+            return UserController.ErrorCodes.USER_NOT_FOUND;    
         }
         let users = JSON.parse(localStorage.getItem("users"));
         delete users[user.getUserName()];
         localStorage.setItem("users",JSON.stringify(users));
-        return UserControllerThingy.ErrorCodes.OK;
+        return UserController.ErrorCodes.OK;
     }
     
     loginUser(user){
         if (!this.userExists(user.getUserName())){
-            console.error(`el usuario ${userName} no existe en el sistema`);
-            return UserControllerThingy.ErrorCodes.USER_NOT_FOUND;    
+            console.error(`el usuario ${user.getUserName()} no existe en el sistema`);
+            return UserController.ErrorCodes.USER_NOT_FOUND;    
         }
-        
         let validUser = this.getUser(user.getUserName());
 
         if (validUser.getPassHash() !== user.getPassHash()){
             console.error(`contraseña incorrecta.`);            
-            return UserControllerThingy.ErrorCodes.WRONG_PASSWORD;
+            return UserController.ErrorCodes.WRONG_PASSWORD;
         }
-        return UserControllerThingy.ErrorCodes.OK;
+        return UserController.ErrorCodes.OK;
     }  
 
 
@@ -102,13 +103,13 @@ function makeUser(){
     const name = document.getElementById("name");
     const pass = document.getElementById("pass");
     
-    new UserControllerThingy().saveUser(new User(name.value,pass.value));
+    new UserController().saveUser(new User(name.value,pass.value));
     refreshText();
 }
 function eraseUser(){
     const name = document.getElementById("name");
     const pass = document.getElementById("pass");
-    new UserControllerThingy().eraseUser(
+    new UserController().eraseUser(
         new User(name.value,pass.value)
     );
     refreshText();
@@ -117,19 +118,19 @@ function eraseUser(){
 function switchPassword() {
     const name = document.getElementById("name");
     const pass = document.getElementById("pass");
-    new UserControllerThingy().updateUser(new User(name.value,pass.value));
+    new UserController().updateUser(new User(name.value,pass.value));
     refreshText();
 }
 
 function loginTest() {
     const name = document.getElementById("name");
     const pass = document.getElementById("pass");
-    let res = new UserControllerThingy().loginUser(new User(name.value,pass.value));
+    let res = new UserController().loginUser(new User(name.value,pass.value));
     switch (res) {
-        case UserControllerThingy.ErrorCodes.USER_NOT_FOUND:
+        case UserController.ErrorCodes.USER_NOT_FOUND:
             alert("el usuario no existe.");            
             break;
-        case UserControllerThingy.ErrorCodes.WRONG_PASSWORD:
+        case UserController.ErrorCodes.WRONG_PASSWORD:
             alert("contraseña incorrecta");
             break;
 
@@ -141,11 +142,3 @@ function loginTest() {
 
 
 
-//localStorage.setItem("users",JSON.stringify({}))
-console.log(
-    localStorage.getItem("users")
-
-)
-
-new UserControllerThingy().saveUser(new User("john pork","pene")); // init
-refreshText();
