@@ -1,0 +1,10 @@
+.cardmb-3{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.card-img-top{
+    width: 1600px;
+    height: 600px;
+
+}

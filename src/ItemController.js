@@ -1,4 +1,4 @@
-import { Item } from "./item.js";
+import { Item } from "item.js";
 
 export class ItemController{
     
@@ -17,6 +17,7 @@ export class ItemController{
         
         let priceMult = 1.0;
         for (let i = 0; i < 8; i++) {
+
             this.saveItem(new Item(`test-${i}`,"nose",Math.random()*99999999,1,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
             
         }
@@ -48,7 +49,7 @@ export class ItemController{
             if (element._name == name) return true;            
         }
         
-        return false;
+        return items[id] != undefined;
     }
 
     getNewestId(){

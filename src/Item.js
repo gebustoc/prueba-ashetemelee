@@ -21,7 +21,7 @@ export class Item{
     setPrice(price){this._price = price;}
     setStock(stock){
         if (stock < 0){
-            console.error("el stock debe ser igual o mayor que 0");
+            console.error("el stock debe ser igual o mayor que 0")
             this._stock = 0;
             return;
         }
@@ -31,7 +31,7 @@ export class Item{
     }
     setPriceMod(pricemod){
         if (pricemod > 1.0){
-            console.error("el multiplicador de descuento debe ser igual o menor que 1.0");
+            console.error("el multiplicador de descuento debe ser igual o menor que 1.0")
             return ;
         }
         this._pricemod = pricemod;
@@ -48,3 +48,4 @@ export class Item{
 
 
 }
+
