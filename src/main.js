@@ -28,9 +28,7 @@ function regenerateContainers() {
     }
     //shittySale(0)
 }
-function idk() {
-    console.log("please work :/");
-}
+
 
 function shittySale(id){
     let item = new ItemController().getItem(id);
@@ -42,8 +40,4 @@ function shittySale(id){
 
 regenerateContainers();
 
-/*
-
-  
-
-.addEventListener('click', );*/
+/*.addEventListener('click', );*/

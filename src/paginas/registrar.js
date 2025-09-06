@@ -8,19 +8,23 @@ onload = (event) => {
 
     document.getElementById("boton-inicio").onclick = ()=>{
         let pass = passwordInput.value;
-        let user = usernameInput.value;
-        let userData = new User(user,pass);
-        let login = new UserController().loginUser(userData);
-        switch (login) {
-            case UserController.ErrorCodes.USER_NOT_FOUND:
-                alert("el usuario no existe.");            
-                break;
-            case UserController.ErrorCodes.WRONG_PASSWORD:
-                alert("contraseña incorrecta");
-                break;
+        let user = usernameInput.value; 
+        console.log(pass," ",user)
 
+        if (pass === "" || user === ""){
+            alert("no hay una contraseña o usuario.");
+            return;
+        }
+
+        let userData = new User(user,pass);
+        let login = new UserController().saveUser(userData);
+
+        switch (login) {
+            case UserController.ErrorCodes.USER_EXISTS:
+                alert("el usuario ya existe.");            
+                break;
             default:
-                alert("logeado :)")
+                alert("usuario creado :)");
                 localStorage.setItem("cur_user",userData)
                 window.location.href = "index.html";
                 break;

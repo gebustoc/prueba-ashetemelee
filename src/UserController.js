@@ -35,7 +35,7 @@ export class UserController{
     saveUser(user){
         if (this.userExists(user.getUserName())){
             console.error(`el usuario ${user.getUserName()} ya existe en el sistema`);
-            return UserController.ErrorCodes.USER_EXISTS;    
+            return UserController.ErrorCodes.USER_EXISTS;
         }
 
         let users = JSON.parse(localStorage.getItem("users")); 
