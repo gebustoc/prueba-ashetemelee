@@ -2,7 +2,7 @@ import { ItemController } from "./ItemController.js";
 
 
 function regenerateContainers() {
-    return
+    
     const container = document.getElementById("product-container")
     container.innerHTML = ""
     
