@@ -4,8 +4,6 @@ import { UserController } from "../UserController.js";
 onload = (event) => {
     let passwordInput = document.getElementById("input-password");
     let usernameInput = document.getElementById("input-username");
-    console.log(passwordInput,usernameInput);
-
     document.getElementById("boton-inicio").onclick = ()=>{
         let pass = passwordInput.value;
         let user = usernameInput.value; 

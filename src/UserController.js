@@ -88,57 +88,6 @@ export class UserController{
 
 
 
-function refreshText(){
-    const Users = JSON.parse(localStorage.getItem("users"));
-    const TextDump = document.getElementById("textdump");
-    TextDump.innerHTML = "";
-    for (const key in Users) {
-        TextDump.innerHTML = TextDump.innerHTML+JSON.stringify(Users[key])+'<br>';
-    }
-    
-}
-
-
-function makeUser(){
-    const name = document.getElementById("name");
-    const pass = document.getElementById("pass");
-    
-    new UserController().saveUser(new User(name.value,pass.value));
-    refreshText();
-}
-function eraseUser(){
-    const name = document.getElementById("name");
-    const pass = document.getElementById("pass");
-    new UserController().eraseUser(
-        new User(name.value,pass.value)
-    );
-    refreshText();
-}
-
-function switchPassword() {
-    const name = document.getElementById("name");
-    const pass = document.getElementById("pass");
-    new UserController().updateUser(new User(name.value,pass.value));
-    refreshText();
-}
-
-function loginTest() {
-    const name = document.getElementById("name");
-    const pass = document.getElementById("pass");
-    let res = new UserController().loginUser(new User(name.value,pass.value));
-    switch (res) {
-        case UserController.ErrorCodes.USER_NOT_FOUND:
-            alert("el usuario no existe.");            
-            break;
-        case UserController.ErrorCodes.WRONG_PASSWORD:
-            alert("contraseña incorrecta");
-            break;
-
-        default:
-            alert("logeado :)")
-            break;
-    }
-}
 
 
 
