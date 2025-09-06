@@ -13,15 +13,14 @@ export class ItemController{
         if (localStorage.getItem("items") === null){
             localStorage.setItem("items",JSON.stringify({}));
             localStorage.setItem("newestItem",-1);
-            let priceMult = 1.0;
-            for (let i = 0; i < 8; i++) {
-
-                this.saveItem(new Item(`test-${i}`,"nose",Math.random()*99999999,1,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
-                
-            }
-
         }
         
+        let priceMult = 1.0;
+        for (let i = 0; i < 8; i++) {
+
+            this.saveItem(new Item(`test-${i}`,"nose",Math.random()*99999999,1,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
+            
+        }
         
 
     }
@@ -43,6 +42,15 @@ export class ItemController{
         let items = JSON.parse(localStorage.getItem("items"));
         return items[id] != undefined;
     }
+    itemNameExists(name){
+        let items = JSON.parse(localStorage.getItem("items"));
+        for (const i in items) {
+            const element = items[i];
+            if (element._name == name) return true;            
+        }
+        
+        return items[id] != undefined;
+    }
 
     getNewestId(){
         return Number.parseInt(localStorage.getItem("newestItem"))+1;
@@ -59,7 +67,7 @@ export class ItemController{
     }
 
     saveItem(item){
-        if (this.itemExists(item.getId())){
+        if (this.itemExists(item.getId()) || this.itemNameExists(item.getName())){
             console.error("el item", item, "ya existe en el sistema");
             return ItemController.ErrorCodes.ITEM_EXISTS;    
         }
