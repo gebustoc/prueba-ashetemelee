@@ -1,4 +1,4 @@
-import { ItemController } from "./ItemController.js";
+import { ItemController } from "../ItemController.js";
 
 
 function regenerateContainers() {
@@ -8,9 +8,16 @@ function regenerateContainers() {
     
   
     let items = new ItemController().getItems();
-    for (const i in items) {
+
+
+    for (let i=0; i < 12; i++) {
+        console.log(i," ",items)
+        if (i >= items.length)return;
+
         const element = items[i];
         let price = element.getPrice() - ((1.0-element.getPriceMod()) * element.getPrice()); 
+
+
 
         container.innerHTML = container.innerHTML+`
             <div id="product_card">
