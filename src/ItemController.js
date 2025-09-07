@@ -32,7 +32,7 @@ export class ItemController{
                 new Item("tula", "la bebida de todos los chilenos", 800000, 5, 1.0, "assets/img/por-fin-tula-coquette-v0-500u942oxjjd1.webp")
             );
 
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 8; i++) {
                 let stock = getRandomInt(4,20);
                 this.saveItem(new Item(`test-${i}`,"nose",Math.random()*99999999,stock,priceMult,"assets/img/tetodance.webp"));   
             }
