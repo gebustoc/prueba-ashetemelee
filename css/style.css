@@ -18,3 +18,10 @@ body{
 .con-cuenta{
     display: none;
 }
+
+.product-card-items{
+    width: 18rem;
+}
+.carri-vacio{
+    display: none;
+}

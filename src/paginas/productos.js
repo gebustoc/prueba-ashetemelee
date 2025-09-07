@@ -1,32 +1,4 @@
-import { Item } from "../Item.js";
-import { ItemController } from "../ItemController.js";
+import { addCartas } from "../CrearCartasProducto.js";
 
-
-function regenerateContainers() {
-    const container = document.getElementById("product-container");
-    container.innerHTML = "";
-    
-  
-    let items = new ItemController().getItems();
-
-
-    for (let i=0; i < items.length; i++) {
-        const element = items[i];
-        let price = element.getPrice() - ((1.0-element.getPriceMod()) * element.getPrice()); 
-        container.innerHTML = container.innerHTML+`
-            <div id="product_card">
-                <div class="card" style="width: 18rem;">
-                    <img src="${element.getImgSrc()}" width="300" class="productImage" alst="...">
-                    <div class="card-body">
-                        <h3 class="card-title">${element.getName()}</h3>
-                        <h4>${element.getDescription()}</h4>
-                        <p class="card-text"> $ ${new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(price)} </p>
-                        <button class="btn btn-primary" onclick="idk(32)" >Comprar (${element.getStock()} en stock)</a>
-                    </div>
-                </div>
-            </div>        
-        `;// wea ql larga para formatear numeros 
-    }
-}
-
-window.onload = regenerateContainers();
+let maxCartas = Infinity;
+addCartas(document.getElementById("product-container"),maxCartas);

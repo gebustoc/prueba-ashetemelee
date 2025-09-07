@@ -13,13 +13,14 @@ export class ItemController{
         if (localStorage.getItem("items") === null){
             localStorage.setItem("items",JSON.stringify({}));
             localStorage.setItem("newestItem",-1);
+            let priceMult = 1.0;
+            for (let i = 0; i < 8; i++) {
+                this.saveItem(new Item(`test-${i}`,"nose",Math.random()*99999999,1,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
+                
+            }
+        
         }
         
-        let priceMult = 1.0;
-        for (let i = 0; i < 8; i++) {
-            this.saveItem(new Item(`test-${i}`,"nose",Math.random()*99999999,1,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
-            
-        }
         
 
     }
