@@ -1,0 +1,25 @@
+.hero {
+  height: 60vh; 
+  background-image: url('');
+  background-size: cover;     
+  background-position: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hero .overlay {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5); 
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.escrito{
+    font-size: small;
+}
+
+.parrafos{
+    font-size: x-large;
+}
