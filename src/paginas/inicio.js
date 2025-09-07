@@ -4,7 +4,6 @@ import { UserController } from "../UserController.js";
 onload = (event) => {
     let passwordInput = document.getElementById("input-password");
     let usernameInput = document.getElementById("input-username");
-    console.log(passwordInput,usernameInput);
 
     document.getElementById("boton-inicio").onclick = ()=>{
         let pass = passwordInput.value;
@@ -20,8 +19,8 @@ onload = (event) => {
                 break;
 
             default:
-                alert("logeado :)")
-                localStorage.setItem("cur_user",userData)
+                alert("logeado :)");
+                localStorage.setItem("cur_user",JSON.stringify(userData))
                 window.location.href = "index.html";
                 break;
         }

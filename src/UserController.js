@@ -54,7 +54,7 @@ export class UserController{
             return UserController.ErrorCodes.USER_NOT_FOUND;    
         }
         if (user.getUserName().length > 100){
-            console.error("el correo es muy largo :/")
+            console.error("el correo es muy largo :/");
             return UserController.ErrorCodes.EMAIL_TOO_LONG;
         }
         
@@ -101,7 +101,7 @@ function refreshText(){
     const Users = JSON.parse(localStorage.getItem("users"));
     const TextDump = document.getElementById("textdump");
     TextDump.innerHTML = "";
-    for (const key in Users) {
+    for (const key of Users) {
         TextDump.innerHTML = TextDump.innerHTML+JSON.stringify(Users[key])+'<br>';
     }
     

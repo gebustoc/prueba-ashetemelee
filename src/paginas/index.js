@@ -4,8 +4,8 @@ import { ItemController } from "../ItemController.js";
 
 function regenerateContainers() {
     
-    const container = document.getElementById("product-container")
-    container.innerHTML = ""
+    const container = document.getElementById("product-container");
+    container.innerHTML = "";
     
   
     let items = new ItemController().getItems();
@@ -31,7 +31,7 @@ function regenerateContainers() {
                     </div>
                 </div>
             </div>        
-        `// wea ql larga para formatear numeros 
+        `;
     }
     //shittySale(0)
 }

@@ -28,7 +28,7 @@ export class ItemController{
         let itemRet = [];
 
         for (const id in items) {
-            itemRet.push(this.getItem(id))
+            itemRet.push(this.getItem(id));
         }
         return itemRet;
     }

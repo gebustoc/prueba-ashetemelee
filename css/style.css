@@ -11,3 +11,10 @@ body{
     width: 20px;
     height: 20px; 
 }
+
+.no_cuenta{
+    visibility: visible;
+}
+.con_cuenta{
+    visibility: hidden;
+}
