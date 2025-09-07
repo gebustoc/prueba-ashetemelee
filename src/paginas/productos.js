@@ -3,7 +3,6 @@ import { ItemController } from "../ItemController.js";
 
 
 function regenerateContainers() {
-    
     const container = document.getElementById("product-container")
     container.innerHTML = ""
     
@@ -11,14 +10,9 @@ function regenerateContainers() {
     let items = new ItemController().getItems();
 
 
-    for (let i=0; i < 12; i++) {
-        if (i >= items.length)return;
-
+    for (let i=0; i < items.length; i++) {
         const element = items[i];
         let price = element.getPrice() - ((1.0-element.getPriceMod()) * element.getPrice()); 
-
-
-
         container.innerHTML = container.innerHTML+`
             <div id="product_card">
                 <div class="card" style="width: 18rem;">
@@ -33,17 +27,6 @@ function regenerateContainers() {
             </div>        
         `// wea ql larga para formatear numeros 
     }
-    //shittySale(0)
 }
 
-
-new ItemController().saveItem(
-    new Item("Gráfica RTX 5080", "Tarjeta gráfica de última generación", 800000, 5, 1.0, "https://gsmpro.cl/cdn/shop/files/pny-geforce-rtx-5080-16gb-argb-overclocked-triple-fan.webp?v=1747339989&width=800")
-);
-new ItemController().saveItem(
-    new Item("tula", "Tarjeta gráfica de última generación", 800000, 5, 1.0, "https://gsmpro.cl/cdn/shop/files/pny-geforce-rtx-5080-16gb-argb-overclocked-triple-fan.webp?v=1747339989&width=800")
-);
-
-regenerateContainers();
-
-/*.addEventListener('click', );*/
+window.onload = regenerateContainers();
