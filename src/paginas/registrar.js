@@ -15,7 +15,7 @@ onload = (event) => {
             return;
         }
 
-        let correovali = user.value.split("@").pop();
+        let correovali = user.split("@").pop();
         if (correovali === undefined || correovali !== "duocuc.cl"){
             alert("el correo no es un correo duoc valido");
             return;
@@ -29,10 +29,11 @@ onload = (event) => {
             case UserController.ErrorCodes.USER_EXISTS:
                 alert("el usuario ya existe.");            
                 break;
-            default:
+            case UserController.ErrorCodes.OK:
                 alert("usuario creado :)");
                 localStorage.setItem("cur_user",userData.getUserName())
-                window.location.href = "index.html";
+                console.log("???");
+                window.location.href = "/index.html";
                 break;
             case UserController.ErrorCodes.EMAIL_TOO_LONG:
                 alert("El correo es muy largo.");            
