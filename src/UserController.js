@@ -7,7 +7,8 @@ export class UserController{
         OK:0,
         USER_EXISTS:1,
         USER_NOT_FOUND:2,
-        WRONG_PASSWORD:3
+        WRONG_PASSWORD:3,
+        EMAIL_TOO_LONG:4
 
     }
 
@@ -37,6 +38,10 @@ export class UserController{
             console.error(`el usuario ${user.getUserName()} ya existe en el sistema`);
             return UserController.ErrorCodes.USER_EXISTS;
         }
+        if (user.getUserName().length > 100){
+            console.error("el correo es muy largo :/")
+            return UserController.ErrorCodes.EMAIL_TOO_LONG;
+        }
 
         let users = JSON.parse(localStorage.getItem("users")); 
         users[user.getUserName()] = user;
@@ -47,6 +52,10 @@ export class UserController{
         if (!this.userExists(user.getUserName())){
             console.error(`el usuario ${user.getUserName()} no existe en el sistema`);
             return UserController.ErrorCodes.USER_NOT_FOUND;    
+        }
+        if (user.getUserName().length > 100){
+            console.error("el correo es muy largo :/")
+            return UserController.ErrorCodes.EMAIL_TOO_LONG;
         }
         
         let users = JSON.parse(localStorage.getItem("users")); 
