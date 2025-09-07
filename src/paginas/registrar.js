@@ -1,7 +1,7 @@
 import { User } from "../User.js";
 import { UserController } from "../UserController.js";
 
-onload = (event) => {
+function setup() {
     let passwordInput = document.getElementById("input-password");
     let usernameInput = document.getElementById("input-username");
     console.log(passwordInput,usernameInput);
@@ -24,7 +24,6 @@ onload = (event) => {
 
         let userData = new User(user,pass);
         let login = new UserController().saveUser(userData);
-
         switch (login) {
             case UserController.ErrorCodes.USER_EXISTS:
                 alert("el usuario ya existe.");            
@@ -32,8 +31,7 @@ onload = (event) => {
             case UserController.ErrorCodes.OK:
                 alert("usuario creado :)");
                 localStorage.setItem("cur_user",userData.getUserName())
-                console.log("???");
-                window.location.href = "/index.html";
+                window.location.href= "/index.html"
                 break;
             case UserController.ErrorCodes.EMAIL_TOO_LONG:
                 alert("El correo es muy largo.");            
@@ -49,3 +47,4 @@ onload = (event) => {
 
 
 
+setup()
