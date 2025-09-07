@@ -14,11 +14,10 @@ onload = (event) => {
             alert("no hay una contraseña o usuario.");
             return;
         }
-        let correovali = user.split("@").pop()
-        if (split == undefined){}
 
-        if (correovali === undefined){
-            alert("el correo no es un correo duoc valido")
+        let correovali = user.value.split("@").pop();
+        if (correovali === undefined || correovali !== "duocuc.cl"){
+            alert("el correo no es un correo duoc valido");
             return;
         }
 
@@ -32,7 +31,7 @@ onload = (event) => {
                 break;
             default:
                 alert("usuario creado :)");
-                localStorage.setItem("cur_user",userData)
+                localStorage.setItem("cur_user",userData.getUserName())
                 window.location.href = "index.html";
                 break;
             case UserController.ErrorCodes.EMAIL_TOO_LONG:

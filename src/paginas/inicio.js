@@ -20,7 +20,7 @@ onload = (event) => {
 
             default:
                 alert("logeado :)");
-                localStorage.setItem("cur_user",JSON.stringify(userData))
+                localStorage.setItem("cur_user",userData.getUserName());
                 window.location.href = "index.html";
                 break;
         }

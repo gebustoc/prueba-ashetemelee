@@ -12,9 +12,9 @@ body{
     height: 20px; 
 }
 
-.no_cuenta{
-    visibility: visible;
+.no-cuenta{
+    display:contents;
 }
-.con_cuenta{
-    visibility: hidden;
+.con-cuenta{
+    display: none;
 }

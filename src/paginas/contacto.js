@@ -21,9 +21,9 @@ onload = (event) => {
         }
 
 
-        let correovali = emailInput.value.split("@").pop()
+        let correovali = emailInput.value.split("@").pop();
         if (correovali === undefined || correovali !== "duocuc.cl"){
-            alert("el correo no es un correo duoc valido")
+            alert("el correo no es un correo duoc valido");
             return;
         }
 
