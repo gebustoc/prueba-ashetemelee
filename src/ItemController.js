@@ -1,5 +1,11 @@
 import { Item } from "./Item.js";
 
+function getRandomInt(min, max) {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+}
+
 export class ItemController{
     
     static ErrorCodes = {
@@ -14,11 +20,24 @@ export class ItemController{
             localStorage.setItem("items",JSON.stringify({}));
             localStorage.setItem("newestItem",-1);
             let priceMult = 1.0;
-            for (let i = 0; i < 8; i++) {
-                this.saveItem(new Item(`test-${i}`,"nose",Math.random()*99999999,1,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));
-                
+            new ItemController().saveItem(
+                new Item("Taza", "Taza de cerámica blanca", 2990, 50, 1.0, "https://gsmpro.cl/cdn/shop/files/pny-geforce-rtx-5080-16gb-argb-overclocked-triple-fan.webp?v=1747339989&width=800")
+            );
+            new ItemController().saveItem(
+                new Item("Gráfica RTX 5080", "Tarjeta gráfica de última generación", 800000, 5, 1.0, "https://gsmpro.cl/cdn/shop/files/pny-geforce-rtx-5080-16gb-argb-overclocked-triple-fan.webp?v=1747339989&width=800")
+            );
+            new ItemController().saveItem(
+                new Item("tula", "Tarjeta gráfica de última generación", 800000, 5, 1.0, "https://gsmpro.cl/cdn/shop/files/pny-geforce-rtx-5080-16gb-argb-overclocked-triple-fan.webp?v=1747339989&width=800")
+            );
+
+            for (let i = 0; i < 6; i++) {
+                let stock = getRandomInt(4,20);
+                this.saveItem(new Item(`test-${i}`,"nose",Math.random()*99999999,stock,priceMult,"https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif"));   
             }
-        
+
+
+
+
         }
         
         

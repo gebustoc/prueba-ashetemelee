@@ -1,11 +1,14 @@
 
 import { ItemController } from "../ItemController.js";
+import { UserController } from "../UserController.js";
 
-function createCards() {
-    const ItemContainer = document.getElementById("item-container")
-    ItemContainer.innerHTML = ""
-    for (let i=0; i < 8; i++){
-        let item = new ItemController().getItem(i);
+function createCards(curUserData) {
+    const ItemContainer = document.getElementById("item-container");
+    ItemContainer.innerHTML = "";
+    let carrito = curUserData.getCarrito();
+
+    for (let i = 0; i < carrito.length; i++){
+        let item = new ItemController().getItem(carrito[i]);
         const CardRoot = document.createElement("div");CardRoot.className = "card mb-3";CardRoot.style.width = "100vw";
         ItemContainer.appendChild(CardRoot);    
 
@@ -26,18 +29,34 @@ function createCards() {
 
         CardRoot.children[0].children[0].children[1].children[2].onclick = ()=>{
             item.setStock(item.getStock()-1);
-            console.log(item.getStock())
+            carrito.splice(i,1)
+            curUserData.setCarrito(carrito);
             new ItemController().updateItem(item);
-            createCards();
-
+            new UserController().updateUser(curUserData);
+            CardRoot.innerHTML = "";
+            setupPage(curUserData);
         }
         CardRoot.children[0].children[0].children[1].children[3].onclick = ()=>{
-            console.log("tetoooooo!!!")
-
+            carrito.splice(i,1)
+            curUserData.setCarrito(carrito);
+            new UserController().updateUser(curUserData);
+            CardRoot.innerHTML = "";
+            createCards(curUserData);
         }
 
     }
 }
+function setupPage() {
+    const TextoVacio = document.getElementById("vacio")
+    let loggedUser = localStorage.getItem("cur_user");
+    if (loggedUser == null)return;
+    let userData = new UserController().getUser(loggedUser);
+    if (userData.getCarrito().length == 0){
+        TextoVacio.style.display = "contents";
+        return;
+    }
+    createCards(userData);
+}
 
-
-createCards();
+//createCards();
+setupPage();
