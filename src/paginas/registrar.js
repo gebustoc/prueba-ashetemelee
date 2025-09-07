@@ -1,4 +1,3 @@
-
 import { User } from "../User.js";
 import { UserController } from "../UserController.js";
 
@@ -10,15 +9,15 @@ onload = (event) => {
     document.getElementById("boton-inicio").onclick = ()=>{
         let pass = passwordInput.value;
         let user = usernameInput.value; 
-        console.log(pass," ",user)
 
         if (pass === "" || user === ""){
             alert("no hay una contraseña o usuario.");
             return;
         }
         let correovali = user.split("@").pop()
-        console.log(correovali)
-        if (correovali === undefined || correovali !== "duocuc.cl"){
+        if (split == undefined){}
+
+        if (correovali === undefined){
             alert("el correo no es un correo duoc valido")
             return;
         }
